@@ -21,7 +21,7 @@ SET CC="cl"
 SET OBJEXT="obj"
 SET RM="del"
 SET EXEOUT="/Fe"
-SET CFLAGS="/nologo /analyze /diagnostics:caret /O2 /GF /Zo- /fp:precise /W3"
+SET CFLAGS="/nologo /analyze /diagnostics:caret /O1 /MD /Gw /Zo- /fp:fast /W3"
 SET LDFLAGS="/link /SUBSYSTEM:CONSOLE"
 
 REM Options specific to 32-bit platforms
