@@ -77,11 +77,11 @@
 *
 **********************************************************************************************/
 
+#include <math.h>		// Required for: sinf(), pow()
 #include <stdbool.h>
-#include <math.h>                       // Required for: sinf(), pow()
-#include <stdlib.h>                     // Required for: calloc(), free()
-#include <string.h>                     // Required for: strcmp()
-#include <stdio.h>                      // Required for: FILE, fopen(), fread(), fwrite(), ftell(), fseek() fclose()
+#include <stdio.h>		// Required for: FILE, fopen(), fread(), fwrite(), ftell(), fseek() fclose()
+#include <stdlib.h>		// Required for: calloc(), free()
+#include <string.h>		// Required for: strcmp()
 
 #include <rfxgen.h>
 
@@ -91,8 +91,8 @@
 // Types and Structures Definition
 //----------------------------------------------------------------------------------
 // Wave parameters type (96 bytes)
-struct WaveParams {
-
+struct WaveParams
+{
     // Random seed used to generate the wave
     int randSeed;
 
@@ -135,7 +135,6 @@ struct WaveParams {
     float lpfResonanceValue;
     float hpfCutoffValue;
     float hpfCutoffSweepValue;
-
 };
 
 // Returns a random value between min and max (both included)
@@ -155,9 +154,6 @@ static int GetRandomValue(int min, int max)
 // NOTE: By default wave is generated as 44100Hz, 32bit float, mono
 Wave GenerateWave(WaveParams *params)
 {
-    #define MAX_WAVE_LENGTH_SECONDS  10     // Max length for wave: 10 seconds
-    #define WAVE_SAMPLE_RATE      44100     // Default sample rate
-
     // NOTE: GetRandomValue() is provided by raylib and seed is initialized at InitWindow()
     #define GetRandomFloat(range) ((float)GetRandomValue(0, 10000)/10000.0f*range)
 
@@ -255,7 +251,7 @@ Wave GenerateWave(WaveParams *params)
 
     // NOTE: We reserve enough space for up to 10 seconds of wave audio at given sample rate
     // By default we use float size samples, they are converted to desired sample size at the end
-    float *buffer = (float *)calloc(MAX_WAVE_LENGTH_SECONDS*WAVE_SAMPLE_RATE, sizeof(float));
+    float *buffer = calloc(MAX_WAVE_LENGTH_SECONDS*WAVE_SAMPLE_RATE, sizeof(float));
     bool generatingSample = true;
     int sampleCount = 0;
 
@@ -446,8 +442,6 @@ Wave GenerateWave(WaveParams *params)
     genWave.sampleRate = WAVE_SAMPLE_RATE; // By default 44100 Hz
     genWave.sampleSize = 32;               // By default 32 bit float samples
     genWave.channels = 1;                  // By default 1 channel (mono)
-
-    // NOTE: Wave can be converted to desired format after generation
 
     genWave.data = calloc(genWave.sampleCount*genWave.channels, genWave.sampleSize/8);
     memcpy(genWave.data, buffer, genWave.sampleCount*genWave.channels*genWave.sampleSize/8);

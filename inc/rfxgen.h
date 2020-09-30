@@ -1,4 +1,9 @@
 
+#pragma once
+
+#define MAX_WAVE_LENGTH_SECONDS  10     // Max length for wave: 10 seconds
+#define WAVE_SAMPLE_RATE      44100     // Default sample rate
+
 typedef struct WaveParams WaveParams;
 
 // Wave type, defines audio wave data
