@@ -30,7 +30,7 @@ if "%VSCMD_ARG_TGT_ARCH%"=="x32" (
 	REM set CFLAGS=%CFLAGS% /arch:SSE
 
 	REM Uncomment the following to support ReactOS and Windows XP.
-	REM set CFLAGS=%CFLAGS% /Fdvc141.pdb
+	set CFLAGS=%CFLAGS% /Fdvc141.pdb
 )
 
 set ICON_FILE=icon.ico
